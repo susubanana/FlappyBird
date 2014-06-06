@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel="stylesheet" href="css/flappy_css/main.css">
+    <script src="js/flappy_js/easeljs-0.7.1.min.js"></script>
+    <script src="js/flappy_js/preloadjs-0.4.1.min.js"></script>
+    <script src="js/flappy_js/FlappyBird.js"></script>
+    <script src="js/flappy_js/bird.js"></script>
+    <script src="js/flappy_js/pillar.js"></script>
+    <script src="js/flappy_js/story.js"></script>
+    <script src="js/flappy_js/playgame.js"></script>
+
+</head>
+<body>
+    <section class="canvas-wraper">
+        <div class="game-score"><em>得分</em><strong>0</strong></div>
+        <div class="tip">按空格执行游戏</div>
+        <div class="mask"></div>
+        <a href="javascript:;" class="restart">重按空格键开始</a>
+        <canvas id="my-bird"></canvas>
+    </section>
+    <script type="text/javascript">
+        FlappyBird.init();
+    </script>
+</body>
+</html>
