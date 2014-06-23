@@ -58,7 +58,7 @@ body{
     opacity: 0.5;
     z-index: 1;
 }
-.canvas-wraper .restart, .canvas-wraper .tip{
+.canvas-wraper .tip{
     display: none;
     position: absolute;
     top: 50%;
@@ -66,7 +66,7 @@ body{
     left: 50%;
     margin-left: -75px;
     z-index: 2;
-    width: 150px;
+    width: 145px;
     height: 40px;
     line-height: 40px;
     background: #DE4C4C;
@@ -76,10 +76,7 @@ body{
     text-align: center;
     text-decoration: none;
 }
-.canvas-wraper .tip{
-    display: block;
-}
-.canvas-wraper .restart:hover, .canvas-wraper .tip:hover{
+.canvas-wraper .tip:hover{
     color: #fafafa;
     text-decoration: none;
 }

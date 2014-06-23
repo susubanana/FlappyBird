@@ -19,52 +19,74 @@ FlappyBird.playGame = (function(){
         this.isStart = false;
         this.isEnd = false;
         this.timer = null;
+        this.touch = false;
         instance = this;
     };
     Game.prototype.init = function(){
-		var canvas = doc.getElementById('my-bird');
-		if(doc.documentElement.clientWidth < 1024 || doc.body.clientWidth < 1024){
-			canvas.width = doc.documentElement.clientWidth || doc.body.clientWidth;						
-		} else {
-			canvas.width = 600;
-		}
-		canvas.height = canvasHeight - 40;
+        var canvas = doc.getElementById('my-bird');
+        canvas.height = canvasHeight - 40;
+        canvas.width = canvas.height * 0.8;
         stage = new createjs.Stage(canvas);
-		
+
         //管道初始化
         pillars = story.buildPillar(stage);
 
         //小鸟初始化，(60,200)是小鸟的坐标，渲染到画布上
-        bird.init(stage, 100, 300);
+        var birdX, birdY;
+        birdX = canvas.width * 0.15;
+        birdY = canvas.height * 0.4;
+        bird.init(stage, birdX, birdY);
         createjs.Ticker.setFPS(10);
 
         //设置画布监听
         createjs.Ticker.addEventListener('tick', stage);
 
         //监听键盘操作
-        this.addSpaceKeyListener();
-        this.addTouchListener();
+        this.addStartListener();
     };
 
     //监听键盘操作
-    
+
     Game.prototype.addSpaceKeyListener = function () {
         var self = this;
         doc.onkeydown = function (e) {
             var e = e || event;
             var currKey = e.keyCode || e.which || e.charCode;
             if (currKey == 32) {
-            	self.startControl();
+                self.startControl();
             }
         };
     };
     Game.prototype.addTouchListener = function () {
         var self = this;
-    	doc.ontouchstart = function (e) {
-        	self.startControl();
-    	};
+
+        doc.ontouchstart = function () {
+            self.startControl();
+        };
     };
-    
+
+    Game.prototype.addStartListener = function () {
+
+        var self = this;
+        if(doc.hasOwnProperty('ontouchstart')){
+            doc.querySelector('.touch').style.display = "block";
+            this.touch = true;
+            doc.ontouchstart = function () {
+                self.startControl();
+            };
+        } else {
+            doc.querySelector('.space').style.display = "block";
+            doc.addEventListener("keydown", function(e){
+
+                var e = e || event;
+                var currKey = e.keyCode || e.which || e.charCode;
+                if (currKey == 32) {
+                    self.startControl();
+                }
+            }, false);
+        }
+    };
+
     Game.prototype.startControl = function() {
         var self = this;
         if(self.isStart == false){
@@ -73,14 +95,18 @@ FlappyBird.playGame = (function(){
 
             //设置tick事件
             createjs.Ticker.addEventListener('tick', self.tick);
-            doc.querySelector('.tip').style.display = "none";
+            if(this.touch == true) {
+                doc.querySelector('.touch').style.display = "none";
+            } else {
+                doc.querySelector('.space').style.display = "none";
+            }
         } else if (self.isEnd == false) {
             self.jump();
         } else {
             self.restart();
         }
     };
-    
+
     //游戏开始
     Game.prototype.start = function() {
         this.jump();
@@ -119,8 +145,12 @@ FlappyBird.playGame = (function(){
     };
 
     Game.prototype.end = function(){
-        this.isEnd = true;    
-        doc.querySelector('.restart').style.display = "block";
+        this.isEnd = true;
+        if(this.touch == true) {
+            doc.querySelector('.restart-touch').style.display = "block";
+        } else {
+            doc.querySelector('.restart-space').style.display = "block";
+        }
         doc.querySelector('.mask').style.cssText = "display:block;height: " + canvasHeight + "px;";
         clearInterval(this.timer);
     };

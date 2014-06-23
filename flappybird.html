@@ -16,15 +16,17 @@
 
 </head>
 <body>
-    <section class="canvas-wraper">
-        <div class="game-score"><em>得分</em><strong>0</strong></div>
-        <div class="tip">按空格执行游戏</div>
-        <div class="mask"></div>
-        <a href="javascript:;" class="restart">重按空格键开始</a>
-        <canvas id="my-bird"></canvas>
-    </section>
-    <script type="text/javascript">
-        FlappyBird.init();
-    </script>
+<section class="canvas-wraper">
+    <div class="game-score"><em>得分</em><strong>0</strong></div>
+    <div class="tip space">按空格开始游戏</div>
+    <div class="tip touch">触摸开始游戏</div>
+    <div class="mask"></div>
+    <a href="javascript:;" class="tip restart-space">重按空格键开始</a>
+    <a href="javascript:;" class="tip restart-touch">触摸重新开始</a>
+    <canvas id="my-bird"></canvas>
+</section>
+<script type="text/javascript">
+    FlappyBird.init();
+</script>
 </body>
 </html>
