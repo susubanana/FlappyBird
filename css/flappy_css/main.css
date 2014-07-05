@@ -11,14 +11,10 @@ body{
     padding-bottom: 35px;
     position: relative;
 }
-@media only screen and (min-width:1024px){
-	.canvas-wraper{
-	    width: 600px;	
-	}
-}
+
 .canvas-wraper .game-score{
     position: absolute;
-    top: 20px;
+    top: 50px;
     left: 30px;
     z-index: 2;
 }

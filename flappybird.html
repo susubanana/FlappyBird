@@ -1,3 +1,7 @@
+---
+layout: false
+---
+
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -13,10 +17,9 @@
     <script src="js/flappy_js/pillar.js"></script>
     <script src="js/flappy_js/story.js"></script>
     <script src="js/flappy_js/playgame.js"></script>
-
 </head>
 <body>
-<section class="canvas-wraper">
+<div class="canvas-wraper">
     <div class="game-score"><em>得分</em><strong>0</strong></div>
     <div class="tip space">按空格开始游戏</div>
     <div class="tip touch">触摸开始游戏</div>
@@ -24,9 +27,10 @@
     <a href="javascript:;" class="tip restart-space">重按空格键开始</a>
     <a href="javascript:;" class="tip restart-touch">触摸重新开始</a>
     <canvas id="my-bird"></canvas>
-</section>
+</div>
 <script type="text/javascript">
     FlappyBird.init();
-</script>
+</script>git@github.com:susubanana/FlappyBird.git
 </body>
 </html>
+
